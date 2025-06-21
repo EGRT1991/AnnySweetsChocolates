@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto - Anny Sweets & Chocolates</title>
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --negro: #000;
+      --blanco: #fff;
+      --beige: #f5f0e1;
+      --beige-claro: #fefaf6;
+      --beige-oscuro: #e8dcc7;
+      --marron-claro: #a9745a;
+      --dorado: #d4af37;
+      --hover: #ffe8b5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Crimson Text', serif;
+      background-color: var(--beige);
+      color: var(--negro);
+    }
+
+    .top-header {
+      background-image: url('https://images.unsplash.com/photo-1617196038435-cc9452ff17b1?auto=format&fit=crop&w=1500&q=80');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      z-index: 1;
+      padding: 40px 20px;
+    }
+
+    .top-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(255, 255, 255, 0.75);
+      z-index: -1;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header-content img {
+      width: 180px;
+      height: auto;
+    }
+
+    .header-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--dorado);
+      text-align: center;
+      flex: 1;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      background-color: var(--marron-claro);
+      padding: 15px;
+    }
+
+    nav a {
+      color: var(--dorado);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--hover);
+    }
+
+    section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid var(--marron-claro);
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: var(--marron-claro);
+      color: var(--blanco);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: var(--negro);
+    }
+
+    .faq {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      background-color: var(--beige-oscuro);
+      border-radius: 12px;
+    }
+
+    .faq .pregunta {
+      margin-bottom: 15px;
+      border-bottom: 1px solid var(--marron-claro);
+    }
+
+    .faq-btn {
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--marron-claro);
+      text-align: left;
+      width: 100%;
+      padding: 10px 0;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .faq-btn::after {
+      content: '+';
+      position: absolute;
+      right: 10px;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-btn.active::after {
+      transform: rotate(45deg);
+    }
+
+    .respuesta {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      font-size: 1rem;
+      color: var(--negro);
+      padding-left: 10px;
+    }
+
+    footer {
+      background-color: var(--negro);
+      color: var(--blanco);
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .footer-links a {
+      color: var(--beige);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--dorado);
+    }
+
+    /* WhatsApp flotante: sólo icono */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
+    .whatsapp-float img {
+      width: 28px;
+      height: 28px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header-content h1 {
+        font-size: 2rem;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="top-header">
+    <div class="header-content">
+      <img src="../Assets/img/Logo.jpeg" alt="Logo de chocolates" />
+      <h1>Anny Sweets & Chocolates</h1>
+    </div>
+  </header>
+
+  <nav>
+    <a href="../index.html">Inicio</a>
+    <a href="Anny.html">Anny</a>
+    <a href="chocolates.html">Chocolates</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="carrito.html">🛒</a>
+  </nav>
+
+<form action="https://formsubmit.co/ejemplo@gmail.com" method="POST">
+    <label for="nombre">Nombre: <span style="color:red;">*</span></label>
+    <input type="text" id="nombre" name="nombre"
+    required pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,}"
+    title="Introduce solo letras y espacios">
+    <label for="email">Correo electrónico: <span style="color:red;">*</span></label>
+    <input type="email" id="email" name="email"
+    required placeholder="nombre@correo.com">
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" id="telefono" name="telefono"
+    pattern="[0-9]{9}"
+    title="Introduce un número de 9 cifras sin espacios ni guiones">
+    <label for="mensaje">Mensaje o pregunta: <span style="color:red;">*</span></label>
+    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+    <p style="font-size: 0.9em;"><span style="color:red;">*</span> Campos obligatorios</p>
+    <button type="submit">Enviar</button>
+    <!-- El type hidden no lo ve el usuario, campo oculto pero que Formsubmit si utiliza internamente
+      para modificar el comportamiento del envio →
+    <!-- Le indica a Formsubmit que, después de que el usuario haga clic en “Enviar” y el formulario 
+     se envíe correctamente, redirija automáticamente a la página que tú indiques en value. En el ejemplo
+      una página de agradecimiento personalizada -->
+    <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
+     <!-- Desactiva el captcha de seguridad de Formsubmit.Por defecto, si no incluyes esta línea, 
+      Formsubmit podría mostrar un captcha visual (tipo “marca todas las bicicletas”). -->
+    <input type="hidden" name="_captcha" value="false">
+</form>
+
+  <section id="faq">
+    <h2>Preguntas Frecuentes</h2>
+    <div class="faq">
+      <div class="pregunta">
+        <button class="faq-btn">¿Qué tipos de chocolate utilizan?</button>
+        <div class="respuesta">Usamos chocolate belga, semi amargo, blanco y con leche, de alta calidad.</div>
+      </div>
+      <div class="pregunta">
+        <button class="faq-btn">¿Realizan envíos a otras ciudades?</button>
+        <div class="respuesta">Sí, hacemos envíos dentro del país con embalaje especial para conservar el producto.</div>
+      </div>
+      <div class="pregunta">
+        <button class="faq-btn">¿Puedo personalizar los regalos?</button>
+        <div class="respuesta">Claro, puedes personalizar mensajes, figuras, colores y presentaciones.</div>
+      </div>
+      <div class="pregunta">
+        <button class="faq-btn">¿Con cuánta anticipación debo hacer un pedido?</button>
+        <div class="respuesta">Recomendamos al menos 3 días hábiles para pedidos personalizados.</div>
+      </div>
+      <div class="pregunta">
+        <button class="faq-btn">¿Ofrecen opciones sin azúcar?</button>
+        <div class="respuesta">Sí, contamos con opciones sin azúcar para diabéticos o dietas especiales.</div>
+      </div>
+      <div class="pregunta">
+        <button class="faq-btn">¿Puedo hacer pedidos para eventos grandes?</button>
+        <div class="respuesta">¡Por supuesto! Trabajamos con empresas, bodas y celebraciones especiales.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Síguenos en redes sociales</p>
+    <div class="footer-links">
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+    </div>
+    <div class="footer-links">
+      <a href="#contacto">Regalos corporativos</a>
+      <a href="#faq">Preguntas Frecuentes</a>
+      <a href="#nosotros">Sobre Nosotros</a>
+    </div>
+    <p>&copy; 2025 Anny Sweets & Chocolates. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Botón WhatsApp con solo icono -->
+  <a href="https://wa.me/34600111222" class="whatsapp-float" target="_blank" aria-label="Contáctanos por WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </a>
+
+  <!-- Scripts -->
+  <script>
+    // Acordeón FAQ
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const respuesta = btn.nextElementSibling;
+        const isOpen = btn.classList.contains('active');
+
+        document.querySelectorAll('.faq-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.respuesta').forEach(r => r.style.maxHeight = null);
+
+        if (!isOpen) {
+          btn.classList.add('active');
+          respuesta.style.maxHeight = respuesta.scrollHeight + "px";
+        }
+      });
+    });
+
+    // Formulario contacto
+    document.getElementById("formulario").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("gracias").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("gracias").style.display = "none";
+        this.reset();
+      }, 4000);
+    });
+  </script>
+</body>
+</html>

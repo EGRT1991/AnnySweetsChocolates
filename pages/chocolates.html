@@ -1,11 +1,453 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anny Sweets & Chocolates - Chocolates</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text&family=Cormorant+Garamond&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --negro: #000;
+      --blanco: #fff;
+      --beige: #f5f0e1;
+      --beige-claro: #fefaf6;
+      --beige-oscuro: #e8dcc7;
+      --marron-claro: #a9745a;
+      --dorado: #d4af37;
+      --hover: #ffe8b5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Crimson Text', serif;
+      background-color: var(--beige);
+      color: var(--negro);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header.top-header {
+      background-image: url('https://images.unsplash.com/photo-1617196038435-cc9452ff17b1?auto=format&fit=crop&w=1500&q=80');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      z-index: 1;
+      padding: 40px 20px;
+    }
+
+    header.top-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(255, 255, 255, 0.75);
+      z-index: -1;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header-content img {
+      width: 180px;
+      height: auto;
+    }
+
+    .header-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--dorado);
+      text-align: center;
+      flex: 1;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      background-color: var(--marron-claro);
+      padding: 15px;
+    }
+
+    nav a {
+      color: var(--dorado);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a[aria-current="page"] {
+      color: var(--hover);
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    section {
+      margin-bottom: 50px;
+    }
+
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--marron-claro);
+    }
+
+    /* Estilos para las secciones nuevas */
+    .seleccion-creativa p,
+    .regalos-premium p {
+      font-size: 1.15rem;
+      max-width: 750px;
+      margin: 0 auto 20px auto;
+      color: var(--negro);
+    }
+
+    .regalos-premium ul {
+      list-style: none;
+      max-width: 700px;
+      margin: 0 auto 30px auto;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .regalos-premium li {
+      background: var(--beige-oscuro);
+      padding: 15px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      color: var(--marron-claro);
+      flex: 1 1 150px;
+      max-width: 200px;
+    }
+
+    /* Galerías */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .producto {
+      background: var(--beige-claro);
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    .producto:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px var(--dorado);
+    }
+
+    .producto img {
+      width: 100%;
+      max-width: 220px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+    }
+
+    .producto .descripcion {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: var(--negro);
+      text-align: center;
+      min-height: 48px;
+    }
+
+    .producto .precio {
+      font-weight: bold;
+      color: var(--marron-claro);
+      font-size: 1.1rem;
+    }
+
+    footer {
+      background-color: var(--negro);
+      color: var(--blanco);
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 10px 0 15px;
+    }
+
+    .footer-links a {
+      color: var(--beige);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--dorado);
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header-content h1 {
+        font-size: 2rem;
+        margin-top: 10px;
+      }
+
+      .galeria {
+        grid-template-columns: 1fr;
+      }
+
+      .regalos-premium ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-    
+
+<header class="top-header">
+  <div class="header-content">
+    <img src="../Assets/img/Logo.jpeg" alt="Logo de chocolates" />
+    <h1>Anny Sweets & Chocolates</h1>
+  </div>
+</header>
+
+<nav>
+  <a href="../index.html">Inicio</a>
+  <a href="Anny.html">Anny</a>
+  <a href="chocolates.html" aria-current="page">Chocolates</a>
+  <a href="contacto.html">Contacto</a>
+  <a href="carrito.html">🛒</a>
+</nav>
+
+<main>
+  <!-- Selección creativa -->
+  <section class="seleccion-creativa">
+    <h2>Selección Creativa para Momentos Especiales</h2>
+    <p>Descubre nuestra exclusiva selección de chocolates artesanales diseñados especialmente
+       para hacer inolvidables tus celebraciones. Perfectos para cumpleaños, aniversarios, bodas y 
+       cualquier ocasión que merezca un toque dulce y personalizado.</p>
+  </section>
+
+  <!-- Regalos premium -->
+  <section class="regalos-premium">
+    <h2>Regalos Premium</h2>
+    <ul>
+      <li>Empresas</li>
+      <li>Repostería</li>
+      <li>Público Familiar</li>
+    </ul>
+  </section>
+
+  <!-- Galería de tabletas -->
+  <section class="galeria-tabletas">
+    <h2>Galería de Tabletas</h2>
+    <div class="galeria">
+      <div class="producto">
+        <img src="../Assets/img/tabletas/tableta1.jpg" alt="Tableta Chocolate 1" />
+        <div class="descripcion">Tableta de chocolate con almendras tostadas</div>
+        <div class="precio">€4.50</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+
+      <div class="producto">
+        <img src="../Assets/img/tabletas/tableta2.jpg" alt="Tableta Chocolate 2" />
+        <div class="descripcion">Tableta de chocolate negro 70%</div>
+        <div class="precio">€5.00</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="../Assets/img/tabletas/tableta3.jpg" alt="Tableta Chocolate 3" />
+        <div class="descripcion">Tableta con trozos de frutas deshidratadas</div>
+        <div class="precio">€5.20</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="../Assets/img/tabletas/tableta4.jpg" alt="Tableta Chocolate 4" />
+        <div class="descripcion">Tableta de chocolate blanco con nuez moscada</div>
+        <div class="precio">€5.80</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="../Assets/img/tabletas/tableta5.jpg" alt="Tableta Chocolate 5" />
+        <div class="descripcion">Tableta con sal marina y caramelo</div>
+        <div class="precio">€6.00</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="../Assets/img/tabletas/tableta6.jpg" alt="Tableta Chocolate 6" />
+        <div class="descripcion">Tableta de chocolate con especias</div>
+        <div class="precio">€5.50</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería de regalos -->
+  <section class="galeria-regalos">
+    <h2>Galería de Regalos</h2>
+    <div class="galeria">
+      <div class="producto">
+        <img src="../Assets/img/regalos/regalo1.jpg" alt="Regalo 1" />
+        <div class="descripcion">Caja de regalo premium con bombones surtidos</div>
+        <div class="precio">€25.00</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="../Assets/img/regalos/regalo2.jpg" alt="Regalo 2" />
+        <div class="descripcion">Set regalo personalizado con mensaje</div>
+        <div class="precio">€30.00</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="../Assets/img/regalos/regalo3.jpg" alt="Regalo 3" />
+        <div class="descripcion">Cesta de chocolates y vinos selectos</div>
+        <div class="precio">€50.00</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="../Assets/img/regalos/regalo4.jpg" alt="Regalo 4" />
+        <div class="descripcion">Caja elegante con chocolates artesanales</div>
+        <div class="precio">€28.00</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="../Assets/img/regalos/regalo5.jpg" alt="Regalo 5" />
+        <div class="descripcion">Pack de regalo para empresas</div>
+        <div class="precio">€45.00</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="../Assets/img/regalos/regalo6.jpg" alt="Regalo 6" />
+        <div class="descripcion">Caja decorativa con bombones selectos</div>
+        <div class="precio">€32.00</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería de bombones -->
+  <section class="galeria-bombones">
+    <h2>Galería de Bombones</h2>
+    <div class="galeria">
+      <div class="producto">
+        <img src="../Assets/img/bombones/bombon1.jpg" alt="Bombón 1" />
+        <div class="descripcion">Bombón relleno de crema de avellana</div>
+        <div class="precio">€2.50</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="../Assets/img/bombones/bombon2.jpg" alt="Bombón 2" />
+        <div class="descripcion">Bombón de chocolate negro con menta</div>
+        <div class="precio">€2.70</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="../Assets/img/bombones/bombon3.jpg" alt="Bombón 3" />
+        <div class="descripcion">Bombón con licor de cereza</div>
+        <div class="precio">€3.00</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="../Assets/img/bombones/bombon4.jpg" alt="Bombón 4" />
+        <div class="descripcion">Bombón de chocolate blanco y pistacho</div>
+        <div class="precio">€2.80</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="../Assets/img/bombones/bombon5.jpg" alt="Bombón 5" />
+        <div class="descripcion">Bombón relleno de caramelo salado</div>
+        <div class="precio">€2.90</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="../Assets/img/bombones/bombon6.jpg" alt="Bombón 6" />
+        <div class="descripcion">Bombón con café espresso</div>
+        <div class="precio">€3.10</div>
+        <button class="add-to-cart" data-nombre="Tableta de Chocolate Negro" data-precio="3.5">Añadir al carrito</button>
+      </div>
+    </div>
+  </section>
+<!-- Aquí cierra el main -->
+</main>
+<!-- Aquí se mostrarán el footer -->
+<footer>
+  <p>Síguenos en redes sociales</p>
+  <div class="footer-links">
+    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+  </div>
+  <div class="footer-links">
+    <a href="#contacto">Regalos corporativos</a>
+    <a href="#faq">Preguntas Frecuentes</a>
+    <a href="#nosotros">Sobre Nosotros</a>
+  </div>
+  <p>&copy; 2025 Anny Sweets & Chocolates. Todos los derechos reservados.</p>
+</footer>
+<!-- Añade este script (añadir al carrito de compra ) justo antes de cerrar </body> en tus páginas de 
+ productos para que funcione el botón: -->
+<script>
+  document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', () => {
+      const nombre = button.dataset.nombre;
+      const precio = parseFloat(button.dataset.precio);
+
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+      const productoExistente = carrito.find(p => p.nombre === nombre);
+      if(productoExistente) {
+        productoExistente.cantidad++;
+      } else {
+        carrito.push({nombre, precio, cantidad: 1});
+      }
+
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      alert(`${nombre} añadido al carrito`);
+    });
+  });
+</script>
+<!-- cierre del script (añadir al carrito de compra)-->
 </body>
 </html>

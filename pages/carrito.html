@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anny Sweets & Chocolates - Carrito</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text&family=Cormorant+Garamond&display=swap" rel="stylesheet" />
+  <style>
+    /* --- Variables de color --- */
+    :root {
+      --negro: #000000;
+      --blanco: #ffffff;
+      --beige: #f5f0e1;
+      --beige-claro: #fefaf6;
+      --beige-oscuro: #e8dcc7;
+      --marron-claro: #a9745a;
+      --dorado: #d4af37;
+      --hover: #ffe8b5;
+    }
+
+    /* --- Reseteo básico --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Crimson Text', serif;
+      background-color: var(--beige);
+      color: var(--negro);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-image: url(../Assets/img/galleta1.jpg);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      z-index: 1;
+      padding: 40px 20px;
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      color: var(--dorado);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(255,255,255,0.75);
+      z-index: -1;
+    }
+
+    nav {
+      background-color: var(--marron-claro);
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      padding: 15px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    nav a {
+      color: var(--dorado);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--hover);
+    }
+
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: var(--beige-oscuro);
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      text-align: center;
+      color: var(--marron-claro);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid var(--marron-claro);
+      text-align: center;
+    }
+
+    th {
+      background-color: var(--marron-claro);
+      color: var(--blanco);
+    }
+
+    button.remove-btn {
+      background-color: var(--dorado);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      color: var(--blanco);
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    button.remove-btn:hover {
+      background-color: var(--negro);
+    }
+
+    .total {
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-align: right;
+      color: var(--negro);
+      margin-top: 10px;
+    }
+
+    .empty-msg {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-top: 50px;
+      color: var(--marron-claro);
+    }
+
+    footer {
+      background-color: var(--negro);
+      color: var(--blanco);
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .footer-links a {
+      color: var(--beige);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--dorado);
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+      table, th, td {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Anny Sweets & Chocolates</h1>
+  </header>
+
+  <nav>
+    <a href="../pages/inicio.html">Inicio</a>
+    <a href="../pages/Anny.html">Anny</a>
+    <a href="../pages/chocolates.html">Chocolates</a>
+    <a href="../pages/contacto.html">Contacto</a>
+    <a href="../pages/carrito.html">🛒 Carrito</a>
+  </nav>
+
+  <main>
+    <h2>Tu Carrito de Compras</h2>
+
+    <table id="cart-table" aria-label="Lista de productos en el carrito">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody id="cart-items">
+        <!-- Productos cargados aquí -->
+      </tbody>
+    </table>
+
+    <p class="empty-msg" id="empty-msg" style="display:none;">Tu carrito está vacío.</p>
+    <p class="total" id="total-price"></p>
+  </main>
+
+  <footer>
+    <p>Síguenos en redes sociales</p>
+    <div class="footer-links">
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+    </div>
+    <div class="footer-links">
+      <a href="#contacto">Regalos coorporativos</a>
+      <a href="#faq">Preguntas Frecuentes</a>
+      <a href="#nosotros">Sobre Nosotros</a>
+    </div>
+    <p>&copy; 2025 Anny Sweets & Chocolates. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Obtenemos carrito desde localStorage o vacio
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    const cartItemsContainer = document.getElementById('cart-items');
+    const emptyMsg = document.getElementById('empty-msg');
+    const totalPriceEl = document.getElementById('total-price');
+
+    // Función para mostrar carrito en la tabla
+    function renderCart() {
+      cartItemsContainer.innerHTML = '';
+      if(carrito.length === 0) {
+        emptyMsg.style.display = 'block';
+        totalPriceEl.textContent = '';
+        return;
+      }
+      emptyMsg.style.display = 'none';
+
+      let total = 0;
+      carrito.forEach((producto, index) => {
+        const subtotal = producto.precio * producto.cantidad;
+        total += subtotal;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${producto.nombre}</td>
+          <td>${producto.precio.toFixed(2)} €</td>
+          <td>
+            <input type="number" min="1" value="${producto.cantidad}" data-index="${index}" class="cantidad-input" style="width: 60px; text-align:center;">
+          </td>
+          <td>${subtotal.toFixed(2)} €</td>
+          <td><button class="remove-btn" data-index="${index}">X</button></td>
+        `;
+        cartItemsContainer.appendChild(tr);
+      });
+
+      totalPriceEl.textContent = `Total: ${total.toFixed(2)} €`;
+
+      // Eventos para inputs de cantidad
+      document.querySelectorAll('.cantidad-input').forEach(input => {
+        input.addEventListener('change', actualizarCantidad);
+      });
+
+      // Eventos para botones eliminar
+      document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', eliminarProducto);
+      });
+    }
+
+    // Actualiza cantidad producto
+    function actualizarCantidad(e) {
+      const index = e.target.dataset.index;
+      let nuevaCantidad = parseInt(e.target.value);
+      if(nuevaCantidad < 1) {
+        nuevaCantidad = 1;
+        e.target.value = 1;
+      }
+      carrito[index].cantidad = nuevaCantidad;
+      guardarCarrito();
+      renderCart();
+    }
+
+    // Eliminar producto del carrito
+    function eliminarProducto(e) {
+      const index = e.target.dataset.index;
+      carrito.splice(index, 1);
+      guardarCarrito();
+      renderCart();
+    }
+
+    // Guardar carrito en localStorage
+    function guardarCarrito() {
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

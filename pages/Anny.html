@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anny Sweets & Chocolates - Anny</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text&family=Cormorant+Garamond&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --negro: #000;
+      --blanco: #fff;
+      --beige: #f5f0e1;
+      --beige-claro: #fefaf6;
+      --beige-oscuro: #e8dcc7;
+      --marron-claro: #a9745a;
+      --dorado: #d4af37;
+      --hover: #ffe8b5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Crimson Text', serif;
+      background-color: var(--beige);
+      color: var(--negro);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header.top-header {
+      background-image: url('https://images.unsplash.com/photo-1617196038435-cc9452ff17b1?auto=format&fit=crop&w=1500&q=80');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      z-index: 1;
+      padding: 40px 20px;
+    }
+
+    header.top-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(255, 255, 255, 0.75);
+      z-index: -1;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header-content img {
+      width: 180px;
+      height: auto;
+    }
+
+    .header-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--dorado);
+      text-align: center;
+      flex: 1;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      background-color: var(--marron-claro);
+      padding: 15px;
+    }
+
+    nav a {
+      color: var(--dorado);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a[aria-current="page"] {
+      color: var(--hover);
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    section {
+      margin-bottom: 50px;
+    }
+
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--marron-claro);
+    }
+
+    #consejos .consejo {
+      background: var(--beige-oscuro);
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin: 10px auto;
+      max-width: 600px;
+      font-size: 1.2rem;
+      text-align: left;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      text-align: left;
+    }
+
+    form label {
+      font-weight: bold;
+    }
+
+    input[type="text"], textarea {
+      padding: 10px;
+      border: 1px solid var(--marron-claro);
+      border-radius: 5px;
+      font-family: 'Crimson Text', serif;
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    button {
+      padding: 12px;
+      background-color: var(--marron-claro);
+      color: var(--blanco);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: var(--negro);
+    }
+
+    #lista-reseñas {
+      margin-top: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    .reseña {
+      background-color: var(--beige-claro);
+      border-left: 5px solid var(--dorado);
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+
+    .reseña p {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .autor {
+      font-style: italic;
+      color: var(--marron-claro);
+      font-weight: 600;
+    }
+
+    footer {
+      background-color: var(--negro);
+      color: var(--blanco);
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 10px 0 15px;
+    }
+
+    .footer-links a {
+      color: var(--beige);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--dorado);
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header-content h1 {
+        font-size: 2rem;
+        margin-top: 10px;
+      }
+
+      #consejos .consejo {
+        max-width: 90%;
+      }
+
+      form {
+        max-width: 100%;
+      }
+
+      #lista-reseñas {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="top-header">
+  <div class="header-content">
+    <img src="../Assets/img/Logo.jpeg" alt="Logo de chocolates" />
+    <h1>Anny Sweets & Chocolates</h1>
+  </div>
+</header>
+ <!-- aqui empieza la navegacion:-->
+<nav>
+  <a href="../index.html">Inicio</a>
+  <a href="Anny.html" aria-current="page">Anny</a>
+  <a href="chocolates.html">Chocolates</a>
+  <a href="contacto.html">Contacto</a>
+  <a href="carrito.html">🛒</a>
+</nav>
+ <!-- aqui empieza main el contenido principal de una seccion-->
+<main>
+  <section id="info-anny">
+    <h2>Quién es Anny</h2>
+    <p>Soy Anny, fundadora de Anny Sweets & Chocolates, un proyecto donde diseño experiencias dulces a través
+       de figuras de chocolate artesanales, bombones y regalos personalizados. Me apasiona crear detalles únicos
+      para cada ocasión especial.</p>
+  </section>
+
+  <section id="consejos">
+    <h2>Consejos</h2>
+    <div class="consejo">🍫 Guarda el chocolate en un lugar fresco y seco para mantener su sabor y textura.</div>
+    <div class="consejo">🌰 Combina chocolates con frutos secos para una experiencia multisensorial única.</div>
+    <div class="consejo">🍓 Acompaña tus chocolates con frutas frescas para un contraste delicioso.</div>
+  </section>
+<!-- Aquí empieza la seccion donde se mostrarán las reseñas -->
+  <section id="reseñas">
+    <h2>Reseñas de Clientes</h2>
+    <form id="form-reseñas">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+      
+      <label for="mensaje">Tu reseña</label>
+      <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu reseña aquí..." required></textarea>
+      
+      <button type="submit">Enviar reseña</button>
+    </form>
+
+    <div class="reseñas" id="lista-reseñas">
+      <!-- Aquí se mostrarán las reseñas -->
+    </div>
+  </section>
+</main>
+<!-- cierre de main y empieza el footer -->
+<footer>
+  <p>Síguenos en redes sociales</p>
+  <div class="footer-links">
+    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+  </div>
+  <div class="footer-links">
+    <a href="#contacto">Regalos corporativos</a>
+    <a href="#faq">Preguntas Frecuentes</a>
+    <a href="#nosotros">Sobre Nosotros</a>
+  </div>
+  <p>&copy; 2025 Anny Sweets & Chocolates. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  const formReseñas = document.getElementById('form-reseñas');
+  const listaReseñas = document.getElementById('lista-reseñas');
+
+  // Cargar reseñas guardadas en localStorage
+  function cargarReseñas() {
+    const reseñasGuardadas = JSON.parse(localStorage.getItem('reseñas')) || [];
+    listaReseñas.innerHTML = '';
+    reseñasGuardadas.forEach(({ nombre, mensaje }) => {
+      agregarReseñaDOM(nombre, mensaje);
+    });
+  }
+
+  // Agrega reseña al DOM
+  function agregarReseñaDOM(nombre, mensaje) {
+    const reseñaDiv = document.createElement('div');
+    reseñaDiv.classList.add('reseña');
+
+    reseñaDiv.innerHTML = `
+      <p>${mensaje.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+      <div class="autor">- ${nombre.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</div>
+    `;
+    listaReseñas.prepend(reseñaDiv);
+  }
+
+  formReseñas.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nombre = e.target.nombre.value.trim();
+    const mensaje = e.target.mensaje.value.trim();
+
+    if (nombre && mensaje) {
+      agregarReseñaDOM(nombre, mensaje);
+
+      // Guardar en localStorage
+      const reseñasGuardadas = JSON.parse(localStorage.getItem('reseñas')) || [];
+      reseñasGuardadas.push({ nombre, mensaje });
+      localStorage.setItem('reseñas', JSON.stringify(reseñasGuardadas));
+
+      formReseñas.reset();
+    }
+  });
+
+  // Cargar reseñas al cargar la página
+  window.addEventListener('DOMContentLoaded', cargarReseñas);
+</script>
+
+</body>
+</html>
