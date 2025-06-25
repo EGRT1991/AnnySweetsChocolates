@@ -7,7 +7,6 @@
   <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text&display=swap" rel="stylesheet">
   <link href="../css/style.css" rel="stylesheet" type="text/css" />
-  
 </head>
 
 <body>
@@ -20,54 +19,65 @@
 
   <nav>
     <a href="../index.html">Inicio</a>
-    <a href="Anny.html">Anny</a>
-    <a href="chocolates.html">Chocolates</a>
-    <a href="contacto.html">Contacto</a>
-    <a href="carrito.html">🛒</a>
+  <a href="../pages/Anny.html" >Anny</a>
+  <a href="./chocolates.html">Chocolates</a>
+  <a href="./contacto.html">Contacto</a>
+  <a href="./carrito.html">🛒</a>
   </nav>
 
-<form action="https://formsubmit.co/ejemplo@gmail.com" method="POST">
+  <form id="formulario" action="https://formsubmit.co/ejemplo@gmail.com" method="POST">
     <label for="nombre">Nombre: <span style="color:red;">*</span></label>
     <input type="text" id="nombre" name="nombre"
     required pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,}"
     title="Introduce solo letras y espacios">
+
     <label for="email">Correo electrónico: <span style="color:red;">*</span></label>
     <input type="email" id="email" name="email"
     required placeholder="nombre@correo.com">
+
     <label for="telefono">Teléfono:</label>
     <input type="tel" id="telefono" name="telefono"
     pattern="[0-9]{9}"
     title="Introduce un número de 9 cifras sin espacios ni guiones">
+
     <label for="mensaje">Mensaje o pregunta: <span style="color:red;">*</span></label>
     <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
     <p style="font-size: 0.9em;"><span style="color:red;">*</span> Campos obligatorios</p>
-    <button type="submit">Enviar</button>   
+    <button type="submit">Enviar</button>
+
+    <div id="gracias" style="display: none; color: green; margin-top: 1em;">
+      ¡Gracias por contactarnos! Te responderemos pronto.
+    </div>
+  </form>
 
   <section id="faq">
     <h2>Preguntas Frecuentes</h2>
     <div class="faq">
+      <!-- Cada pregunta -->
       <div class="pregunta">
-        <button class="faq-btn">¿Qué tipos de chocolate utilizan?</button>
+        <button class="faq-btn" aria-expanded="false">¿Qué tipos de chocolate utilizan?</button>
         <div class="respuesta">Usamos chocolate belga, semi amargo, blanco y con leche, de alta calidad.</div>
       </div>
+      <!-- Repite para otras preguntas -->
       <div class="pregunta">
-        <button class="faq-btn">¿Realizan envíos a otras ciudades?</button>
+        <button class="faq-btn" aria-expanded="false">¿Realizan envíos a otras ciudades?</button>
         <div class="respuesta">Sí, hacemos envíos dentro del país con embalaje especial para conservar el producto.</div>
       </div>
       <div class="pregunta">
-        <button class="faq-btn">¿Puedo personalizar los regalos?</button>
+        <button class="faq-btn" aria-expanded="false">¿Puedo personalizar los regalos?</button>
         <div class="respuesta">Claro, puedes personalizar mensajes, figuras, colores y presentaciones.</div>
       </div>
       <div class="pregunta">
-        <button class="faq-btn">¿Con cuánta anticipación debo hacer un pedido?</button>
+        <button class="faq-btn" aria-expanded="false">¿Con cuánta anticipación debo hacer un pedido?</button>
         <div class="respuesta">Recomendamos al menos 3 días hábiles para pedidos personalizados.</div>
       </div>
       <div class="pregunta">
-        <button class="faq-btn">¿Ofrecen opciones sin azúcar?</button>
+        <button class="faq-btn" aria-expanded="false">¿Ofrecen opciones sin azúcar?</button>
         <div class="respuesta">Sí, contamos con opciones sin azúcar para diabéticos o dietas especiales.</div>
       </div>
       <div class="pregunta">
-        <button class="faq-btn">¿Puedo hacer pedidos para eventos grandes?</button>
+        <button class="faq-btn" aria-expanded="false">¿Puedo hacer pedidos para eventos grandes?</button>
         <div class="respuesta">¡Por supuesto! Trabajamos con empresas, bodas y celebraciones especiales.</div>
       </div>
     </div>
@@ -82,17 +92,16 @@
     <div class="footer-links">
       <a href="#contacto">Regalos corporativos</a>
       <a href="#faq">Preguntas Frecuentes</a>
-      <a href="#nosotros">Sobre Nosotros</a>
+      <!-- Eliminado enlace roto #nosotros -->
     </div>
     <p>&copy; 2025 Anny Sweets & Chocolates. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- Botón WhatsApp con solo icono -->
+  <!-- Botón WhatsApp -->
   <a href="https://wa.me/34600111222" class="whatsapp-float" target="_blank" aria-label="Contáctanos por WhatsApp">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
   </a>
 
-  <!-- Scripts -->
   <script>
     // Acordeón FAQ
     document.querySelectorAll('.faq-btn').forEach(btn => {
@@ -100,17 +109,21 @@
         const respuesta = btn.nextElementSibling;
         const isOpen = btn.classList.contains('active');
 
-        document.querySelectorAll('.faq-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.faq-btn').forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-expanded', 'false');
+        });
         document.querySelectorAll('.respuesta').forEach(r => r.style.maxHeight = null);
 
         if (!isOpen) {
           btn.classList.add('active');
+          btn.setAttribute('aria-expanded', 'true');
           respuesta.style.maxHeight = respuesta.scrollHeight + "px";
         }
       });
     });
 
-    // Formulario contacto
+    // Formulario
     document.getElementById("formulario").addEventListener("submit", function(e) {
       e.preventDefault();
       document.getElementById("gracias").style.display = "block";
